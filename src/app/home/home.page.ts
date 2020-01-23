@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,7 @@ export class HomePage {
   page: 0;
   itemsPage = 20;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.loadUsers();
   }
 
@@ -29,6 +30,15 @@ export class HomePage {
   loadData(event) {
     this.page++;
     this.loadUsers(event);
+  }
+
+  openDetails(userSelected) {
+    let navigationExtras: NavigationExtras = {
+      state: {
+        user: userSelected
+      }
+    };
+    this.router.navigate(['details'], navigationExtras);
   }
 
 }

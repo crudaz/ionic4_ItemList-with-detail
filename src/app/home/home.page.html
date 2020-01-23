@@ -17,6 +17,17 @@
         <h2 class="ion-text-capitalize">{{ user.name?.first }} {{ user.name?.last }}</h2>
         <p>{{ user.email }}</p>
       </ion-label>
+
+      <ion-button (click) ="openDetails(user)">
+        <ion-icon 
+          slot="icon-only" 
+          name="arrow-round-forward" 
+          expand="full" 
+          fill="default" 
+          size="large"
+          router-direction="forward"></ion-icon>
+      </ion-button>
+
     </ion-item>
   </ion-card>
 
