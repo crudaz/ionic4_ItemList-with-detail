@@ -9,17 +9,26 @@ import { HttpClient } from '@angular/common/http';
 export class HomePage {
   users = [];
   page: 0;
+  itemsPage = 20;
 
   constructor(private http: HttpClient) {
     this.loadUsers();
   }
 
-  loadUsers() {
-    this.http.get(`https://randomuser.me/api/?results=20&page=${this.page}`)
+  loadUsers(event?) {
+    this.http.get(`https://randomuser.me/api/?results=${this.itemsPage}&page=${this.page}`)
       .subscribe(res => {
-        console.log(res);
         this.users = this.users.concat(res['results']);
       });
+
+      if(event) {
+        event.target.complete();
+      }
+  }
+
+  loadData(event) {
+    this.page++;
+    this.loadUsers(event);
   }
 
 }

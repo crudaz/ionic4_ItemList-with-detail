@@ -14,9 +14,17 @@
       </ion-avatar>
 
       <ion-label>
-        <h2 text-capitalize>{{ user.name?.first }} {{ user.name?.last }}</h2>
+        <h2 class="ion-text-capitalize">{{ user.name?.first }} {{ user.name?.last }}</h2>
         <p>{{ user.email }}</p>
       </ion-label>
     </ion-item>
   </ion-card>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more users...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
 </ion-content>
